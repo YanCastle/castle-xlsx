@@ -1,9 +1,13 @@
 # castle-xlsx
-xlsx
+```shell
+npm i -S castle-xlsx
+```
 ```html
 <input type="file" name="" id="" @change="handleChange">
 ```
-
+```typescript
+import { readAsJSON } from "castle-xlsx";
+```
 ```typescript
 handleChange(e: any) {
     const files = e.target.files;
