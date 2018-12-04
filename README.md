@@ -37,9 +37,12 @@ handleChange(e: any) {
 ```typescript
     wirteFileFromJSON({
         SheetName:[
-            [1,2,3,4,5,6],
-            [1,2,3,4,5,6],
-            [1,2,3,4,5,6],
+            {Title:1,Value:2},
+            {Title:1,Value:2},
+            {Title:1,Value:2},
+            {Title:1,Value:2},
+            {Title:1,Value:2},
+            {Title:1,Value:2}
         ]
     },'文件名称 filename.xlsx')
 ```
