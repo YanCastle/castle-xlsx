@@ -3,10 +3,10 @@
         "module": "commonjs",
         "target": "es2018",
         "sourceMap": true,
-        "outDir": "../dist",
+        "outDir": "dist",
         "declaration": true,
         "experimentalDecorators": true,
-        "removeComments": true,
+        "removeComments": false,
         "preserveConstEnums": true,
         "lib": [
             "es2015",
