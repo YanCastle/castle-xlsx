@@ -1,4 +1,5 @@
 import * as XLSX from 'xlsx'
+import * as moment from 'moment';
 declare let window: any;
 declare let FileReader: any;
 declare let document: any;
@@ -27,10 +28,24 @@ export function select_file(accept = "*") {
         i.click();
     })
 }
+/**
+ * 键值转换数据类型字典
+ */
+export enum KeyMapType {
+    /**
+     * 日期类型,Date
+     */
+    Date,
+    Number
+}
+/**
+ * 键值转换配置参数
+ */
 export class KeyMap {
-    default: string | boolean | number = "";
+    default: string | boolean | number | Function = "";
     code: string = "";
     name: string = "";
+    type?: KeyMapType
 }
 /**
  * 读取Excel文件为JSON内容
@@ -57,9 +72,19 @@ export function readAsJSON(file?: string | any, map?: KeyMap[]): Promise<{ [inde
                 if (map) {
                     let td: { [index: string]: string | number | boolean }[] = [];
                     for (let x of Data[workbook.SheetNames[0]]) {
-                        let p = {};
+                        let p: { [index: string]: any } = {};
                         for (let o of map) {
                             p[o.code] = x[o.name] || x[o.code] || (x.default instanceof Function ? x.default(x) : x.default)
+                            if (undefined !== o.type) {
+                                switch (o.type) {
+                                    case KeyMapType.Date:
+                                        p[o.code] = moment('1900-01-01 00:00:00Z').add(Number(p[o.code]) - 2, 'day').toDate();
+                                        break;
+                                    case KeyMapType.Number:
+                                        p[o.code] = Number(p[o.code])
+                                        break;
+                                }
+                            }
                         }
                         td.push(p);
                     }
