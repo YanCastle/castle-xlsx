@@ -1,6 +1,6 @@
 {
   "name": "@ctsy/xlsx",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "xlsx",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/YanCastle/castle-xlsx#readme",
   "dependencies": {
+    "moment": "^2.24.0",
     "xlsx": "^0.15.3"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0"
   }
 }
