@@ -1,29 +1,28 @@
-# castle-xlsx
+# @ctsy/xlsx
 ```shell
-npm i -S castle-xlsx
+yarn add @ctsy/xlsx
 ```
 # 读取文件 read xlsx file in brower
 ```html
-<input type="file" name="" id="" @change="handleChange">
+<!-- 现在可以不用手动写上传控件了，可以直接调用readAsJSON -->
+<!-- <input type="file" name="" id="" @change="handleChange"> -->
+<button @click="upload">导入(import)</button>
 ```
 ```typescript
-import { readAsJSON } from "castle-xlsx";
+import { readAsJSON } from "@ctsy/xlsx";
 ```
 ```typescript
-handleChange(e: any) {
-    const files = e.target.files;
-    if (!files) {
-        return;
-    }
-    this.Loading = true;
-    readAsJSON(files[0], (d: any) => {
-        if (d["Sheet1"] instanceof Array) {
-            this.XlsxData = d;
-        } else {
-            error("找不到Sheet1的表，请确认模版是否正确");
-        }
+async upload(e: any) {
+    try{
+        this.Loading = true;
+        let rs = await readAsJSON(undefined,[{name:"标题",code:'键',default:'默认值'}]);
+        // rs就是获得的结果
+    }catch(e){
+
+    }finally{
+
         this.Loading = false;
-    });
+    }
 }
 ```
 
