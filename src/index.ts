@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx'
-import * as moment from 'moment';
+import * as moment from 'dayjs';
 declare let window: any;
 declare let FileReader: any;
 declare let document: any;
@@ -10,7 +10,7 @@ export const isBrower = 'undefined' !== typeof window;
  * 触发弹出文件选择框
  * @param accept 
  */
-export function select_file(accept = "*") {
+export function select_file(accept = "*"): Promise<any[]> {
     return new Promise((s, j) => {
         let i = document.createElement('input');
         i.type = 'file';
